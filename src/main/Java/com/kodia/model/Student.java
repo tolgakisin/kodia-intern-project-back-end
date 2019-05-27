@@ -11,7 +11,7 @@ import java.util.Date;
 public class Student implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private int id;
     @ManyToOne

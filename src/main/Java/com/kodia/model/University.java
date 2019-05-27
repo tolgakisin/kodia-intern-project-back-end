@@ -10,8 +10,9 @@ import java.util.List;
 @Entity
 @Table(name = "universities")
 public class University implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private int id;
     @Column(name = "api_id", nullable = false, unique = true)
