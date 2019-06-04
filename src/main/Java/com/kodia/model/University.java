@@ -38,7 +38,7 @@ public class University implements Serializable {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
-    @OneToMany(mappedBy = "university", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "university", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Student> studentList;
