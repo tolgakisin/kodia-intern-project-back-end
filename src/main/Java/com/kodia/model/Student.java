@@ -21,15 +21,15 @@ public class Student implements Serializable {
     private String name;
     @Column(name = "started_at", nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "YYYY-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startedAt;
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "YYYY-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "YYYY-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
     public int getId() {

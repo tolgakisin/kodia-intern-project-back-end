@@ -1,5 +1,6 @@
 package com.kodia.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -27,18 +28,19 @@ public class University implements Serializable {
     private String type;
     @Column(name = "founded_at", nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "YYYY-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date foundedAt;
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "YYYY-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "YYYY-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
     @OneToMany(mappedBy = "university", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Student> studentList;
 
     public int getId() {

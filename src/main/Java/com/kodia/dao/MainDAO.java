@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -16,7 +17,9 @@ import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
+@Repository
 public class MainDAO {
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -65,6 +68,25 @@ public class MainDAO {
         Root<University> root = criteriaQuery.from(University.class);
 
         Predicate predicate = criteriaBuilder.equal(root.get("id"), id);
+        criteriaQuery.select(root).where(predicate);
+
+        Query<University> query = getCurrentSession().createQuery(criteriaQuery);
+        University university = null;
+        try {
+            university = query.getSingleResult();
+        } catch (Exception e) {
+            logger.error("University object is null");
+        }
+        return university;
+    }
+
+    // select query by api id for university table
+    public University getUniversityByApiId(int id){
+        CriteriaBuilder criteriaBuilder = getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<University> criteriaQuery = criteriaBuilder.createQuery(University.class);
+        Root<University> root = criteriaQuery.from(University.class);
+
+        Predicate predicate = criteriaBuilder.equal(root.get("apiId"), id);
         criteriaQuery.select(root).where(predicate);
 
         Query<University> query = getCurrentSession().createQuery(criteriaQuery);

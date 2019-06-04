@@ -25,6 +25,8 @@ public class AppConfig {
 
     @Autowired
     private Environment env;
+
+    // hibernate properties
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();

@@ -11,8 +11,9 @@ import javax.servlet.ServletRegistration;
 
 public class WebAppInitializer implements WebApplicationInitializer {
 
+    // dispatcher servlet declaration and mapping
     @Override
-    public void onStartup(ServletContext servletContext){
+    public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext context = getContext();
         servletContext.addListener(new ContextLoaderListener(context));
         ServletRegistration.Dynamic dispatcherServlet = servletContext.addServlet("DispatcherServlet",new DispatcherServlet(context));
@@ -27,6 +28,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
         servletContext.addFilter("characterEncodingFilter",characterEncodingFilter).addMappingForUrlPatterns(null,false,"/*");
     }
 
+    // config package declaration
     private AnnotationConfigWebApplicationContext getContext(){
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.setConfigLocation("com.kodia.config");
