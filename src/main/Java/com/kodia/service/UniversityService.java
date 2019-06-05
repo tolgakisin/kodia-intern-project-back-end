@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,6 +26,11 @@ public class UniversityService {
     @Transactional
     public University getUniversityById(int id){
         return mainDAO.getUniversityById(id);
+    }
+
+    @Transactional
+    public University getUniversityByApiId(int id){
+        return mainDAO.getUniversityByApiId(id);
     }
 
     // save or update university

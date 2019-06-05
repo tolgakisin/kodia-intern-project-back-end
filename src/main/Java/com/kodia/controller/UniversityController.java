@@ -34,14 +34,14 @@ public class UniversityController {
         if (universityList.size() == 0)
             ResponseEntity.badRequest();
 
-        List<UniversityListItem> universityListItemList= new ArrayList<>();
+        List<UniversityListItem> universityItemList= new ArrayList<>();
 
         for (University u : universityList) {
-            universityListItemList.add(new UniversityListItem(u.getId(),u.getName()));
+            universityItemList.add(new UniversityListItem(u.getId(),u.getName()));
         }
 
-        logger.info(universityListItemList.get(0).getName());
-        return ResponseEntity.ok(universityListItemList);
+        logger.info(universityItemList.get(0).getName());
+        return ResponseEntity.ok(universityItemList);
     }
 
     @GetMapping(value = "/{id}")
@@ -65,7 +65,7 @@ public class UniversityController {
             }
             uni.setStudents(uniStudentList);
 
-            logger.info(university.getName());
+            logger.info(uni.getName());
             return ResponseEntity.ok(uni);
         }else{
             UniversityNotFound notFound = new UniversityNotFound("error",id + " numaralı üniversite kaydı bulunamadı");

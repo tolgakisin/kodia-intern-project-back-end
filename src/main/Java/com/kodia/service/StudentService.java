@@ -46,7 +46,7 @@ public class StudentService {
     * json url = https://gitlab.com/kodiasoft/intern/2019/snippets/1859421/raw
     */
     @Transactional
-    public Boolean saveStudent(String name, String started_at, int university){
+    public Student saveStudent(String name, String started_at, int university){
         University universityByApiId = mainDAO.getUniversityByApiId(university);
 
         University u = null;
@@ -106,7 +106,8 @@ public class StudentService {
         s.setUniversity(uni);
         s.setCreatedAt(createdDate);
         s.setUpdatedAt(updatedDate);
-        return mainDAO.saveOrUpdateObject(s);
+        Boolean success = mainDAO.saveOrUpdateObject(s);
+        return s;
     }
 
     // read json string from url
